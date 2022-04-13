@@ -64,5 +64,46 @@ const getInsertionSortLL = (arr) => {
     return head.next;
 }
 
+function partition(arr, low, high, statesArr) {
+
+    let pivot = arr[high];
+    let i = (low - 1);
+
+    for (let j = low; j <= high - 1; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swapEles(arr, i, j);
+            statesArr.push(new Node(i, j, swap = true));
+        }
+        else if (i > -1) {
+            statesArr.push(new Node(i, j, swap = false));
+        }
+    }
+    swapEles(arr, i + 1, high);
+    statesArr.push(new Node(i + 1, high, swap = true));
+    return (i + 1);
+}
+
+function quickSort(arr, low, high, statesArr) {
+    if (low < high) {
+        let pi = partition(arr, low, high, statesArr);
+        quickSort(arr, low, pi - 1, statesArr);
+        quickSort(arr, pi + 1, high, statesArr);
+    }
+}
+
+const getQuickSortLL = (arr) => {
+    let head = new Node(null, null);
+    let tempHead = head;
+    let temp = []
+    quickSort(arr, 0, arr.length - 1, temp);
+    // convert arr to Linked List
+    for (let i = 0; i < temp.length; i++) {
+        let ele = temp[i];
+        tempHead.next = ele;
+        tempHead = tempHead.next;
+    }
+    return head.next;
+}
 
 
