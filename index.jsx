@@ -2,7 +2,7 @@ const { useState, useEffect, useCallback, useRef } = React;
 const { createRoot } = ReactDOM;
 
 const config = {
-  initNumBars: 4,
+  initBarSize: 25,
   PRIMARY_COLOR: "#03FC8C",
   SECONDARY_COLOR: "#5343FF",
 };
@@ -20,8 +20,11 @@ function Main() {
   const barsRef = useRef([]);
   const mainRef = useRef(null);
 
-  const [numBars, setNumBars] = useState(config.initNumBars);
-  const [arr, setArr] = useState(getRandomArr(numBars));
+  const [numBars, setNumBars] = useState(5);
+  const numbarsRef = useRef(numBars);
+  numbarsRef.current = numBars;
+
+  const [arr, setArr] = useState([]);
   const arrRef = useRef(arr);
 
   const setArrState = (newArr) => {
@@ -58,14 +61,25 @@ function Main() {
     setSortingAlg(newAlg);
     sortingAlgRef.current = newAlg;
   };
-
+  // Get the Window dimensions
   useEffect(() => {
-    setBarWidth(parseInt(mainRef.current.offsetWidth / (numBars + 1)));
-    setBoardHeight(mainRef.current.offsetHeight);
-    barsRef.current = barsRef.current.slice(0, numBars);
+    let winWidth = mainRef.current.offsetWidth;
+    let winHeight = mainRef.current.offsetHeight;
+
+    changeBarCount(parseInt((winWidth - 30) / config.initBarSize));
+    setBarWidth(parseInt(winWidth / (numbarsRef.current + 1)));
+    setBoardHeight(winHeight);
+    // initializing bar refs later used in targeting the bars.
+    barsRef.current = barsRef.current.slice(0, numbarsRef.current);
+    randomizeArr();
   }, []);
 
   function getBarHeight(height) {
+    /* returns the relative height of the current bar 
+    based on the max bar height
+    simply: giving 100% of the height to the max bar.
+    others are based on the max bar.
+    */
     let max = arr.reduce(function (a, b) {
       return Math.max(a, b);
     });
@@ -114,12 +128,13 @@ function Main() {
 
   function randomizeArr() {
     setRunState(false);
-    const randomArr = getRandomArr(numBars);
+    const randomArr = getRandomArr(numbarsRef.current);
     setArrState(randomArr);
   }
 
   function changeBarCount(cnt) {
     setNumBars(cnt);
+    numbarsRef.current = cnt;
     randomizeArr();
   }
 
@@ -135,7 +150,7 @@ function Main() {
     <>
       <div id="settings-dock">
         <button className="btn" onClick={toggleRunning}>
-          {running ? "Pause" : "Play"}
+          {running ? <Pause /> : <Play />}
         </button>
         <button className="btn" onClick={randomizeArr}>
           Randomize
@@ -189,6 +204,13 @@ function Main() {
       </div>
     </>
   );
+}
+
+function Pause() {
+  return <i className="fa-solid fa-pause"></i>;
+}
+function Play() {
+  return <i className="fa-solid fa-play"></i>;
 }
 
 function Dropdown({ changeState }) {
