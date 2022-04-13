@@ -11,6 +11,7 @@ const algorithms = {
   "Bubble Sort": (arr) => getBubbleSortLL(arr),
   "Selection Sort": (arr) => getSelectionSortLL(arr),
   "Insertion Sort": (arr) => getInsertionSortLL(arr),
+  "Quick Sort": (arr) => getQuickSortLL(arr),
 };
 
 const root = createRoot(document.getElementById("root"));
@@ -133,8 +134,14 @@ function Main() {
   }
 
   function changeBarCount(cnt) {
+    // changing the width of the bars
+    let winWidth = mainRef.current.offsetWidth;
+    let tempBarWidth = winWidth / cnt;
+    setBarWidth(tempBarWidth);
+    // setting the cnt of bars
     setNumBars(cnt);
     numbarsRef.current = cnt;
+    // randomizing the arr
     randomizeArr();
   }
 
