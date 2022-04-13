@@ -27,7 +27,7 @@ Learn About Hooks here:
 - [Ask your Friend Google😜](https://www.google.com/)
 
 The Animation is done using [setTimeout](https://www.w3schools.com/jsref/met_win_settimeout.asp) in a recursive fashion for the animation. In every step of recursion we get the next step of the algorithm.
-The algorithm is precomputed for extensibility and is stored in a **Linked list**.
+The algorithm is precomputed for extensibility and is stored in a [Linked list](https://www.geeksforgeeks.org/implementation-linkedlist-javascript/).
 For every recursive call the Linked List is iterated thus showing the animation.
 
 ## Features
