@@ -48,10 +48,11 @@ body {
   cursor: pointer;
   transition: 0.5s;
 }
-
-.btn:hover {
-  background: var(--primary-color);
-  color: black;
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: var(--primary-color);
+    color: black;
+  }
 }
 
 .slider-container {
