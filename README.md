@@ -32,7 +32,7 @@ For every recursive call the Linked List is iterated thus showing the animation.
 
 ## References
 
-- [Sorting Algorithms Geeks For Geeks](<(https://www.geeksforgeeks.org/sorting-algorithms/)>)
+- [Sorting Algorithms Geeks For Geeks](https://www.geeksforgeeks.org/sorting-algorithms/)
 
 ## Features
 
