@@ -30,6 +30,10 @@ The Animation is done using [setTimeout](https://www.w3schools.com/jsref/met_win
 The algorithm is precomputed for extensibility and is stored in a [Linked list](https://www.geeksforgeeks.org/implementation-linkedlist-javascript/).
 For every recursive call the Linked List is iterated thus showing the animation.
 
+## References
+
+- [Sorting Algorithms Geeks For Geeks](<(https://www.geeksforgeeks.org/sorting-algorithms/)>)
+
 ## Features
 
 - A Random button to creates a random board.
