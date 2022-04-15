@@ -14,10 +14,10 @@ function swapEles(arr, xp, yp) {
 }
 
 class Node {
-    constructor(a, b, swap, next = null) {
+    constructor(a, b, arr, next = null) {
         this.a = a;
         this.b = b;
-        this.swap = swap;
+        this.arr = arr;
         this.next = next;
     }
 }

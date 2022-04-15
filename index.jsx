@@ -12,6 +12,7 @@ const algorithms = {
   "Selection Sort": (arr) => getSelectionSortLL(arr),
   "Insertion Sort": (arr) => getInsertionSortLL(arr),
   "Quick Sort": (arr) => getQuickSortLL(arr),
+  "Merge Sort": (arr) => getMergeSortLL(arr),
 };
 
 const root = createRoot(document.getElementById("root"));
@@ -62,6 +63,7 @@ function Main() {
     setSortingAlg(newAlg);
     sortingAlgRef.current = newAlg;
   };
+
   // Get the Window dimensions
   useEffect(() => {
     let winWidth = mainRef.current.offsetWidth;
@@ -96,7 +98,7 @@ function Main() {
 
       let idx1 = node.a;
       let idx2 = node.b;
-      let shouldSwap = node.swap;
+      let nxtArr = node.arr;
 
       barsRef.current[idx1].style.backgroundColor = config.SECONDARY_COLOR;
       barsRef.current[idx2].style.backgroundColor = config.SECONDARY_COLOR;
@@ -105,8 +107,7 @@ function Main() {
         barsRef.current[idx1].style.backgroundColor = config.PRIMARY_COLOR;
         barsRef.current[idx2].style.backgroundColor = config.PRIMARY_COLOR;
 
-        let updatedArr = getUpdatedArr(idx1, idx2, shouldSwap);
-        setArrState(updatedArr);
+        setArrState(nxtArr);
         runSimulation(node.next);
       }, animTimeRef.current);
     },
@@ -145,14 +146,6 @@ function Main() {
     randomizeArr();
   }
 
-  const getUpdatedArr = (i, j, shouldSwap) => {
-    let temp = Array.from(arrRef.current);
-    if (shouldSwap) {
-      swapEles(temp, i, j);
-    }
-    return temp;
-  };
-
   return (
     <>
       <div id="settings-dock">
@@ -164,7 +157,7 @@ function Main() {
         </button>
         <div className="slider-container">
           <label htmlFor="animSlider">
-            Time before swap: {animTime / 1000}s
+            Time before swap: <p className="val">{animTime / 1000}s</p>
           </label>
           <input
             type="range"
@@ -178,7 +171,9 @@ function Main() {
           ></input>
         </div>
         <div className="slider-container">
-          <label htmlFor="numBarsSlider">Number of bars: {numBars}</label>
+          <label htmlFor="numBarsSlider">
+            Number of bars: <p className="val">{numBars}</p>
+          </label>
           <input
             type="range"
             min="4"
