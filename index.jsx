@@ -60,6 +60,7 @@ function Main() {
   sortingAlgRef.current = sortingAlg;
 
   const setSortingAlgState = (newAlg) => {
+    if (runningRef.current) alert("Paused Becuase the algorithm is selected.");
     setRunState(false);
     setSortingAlg(newAlg);
     sortingAlgRef.current = newAlg;
