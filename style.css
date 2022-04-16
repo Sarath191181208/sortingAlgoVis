@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: white;
+  font-family: "Fredoka", "Varela Round", sans-serif;
 }
 body {
   background: rgb(7, 13, 52);
