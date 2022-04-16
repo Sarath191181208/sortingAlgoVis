@@ -60,6 +60,7 @@ function Main() {
   sortingAlgRef.current = sortingAlg;
 
   const setSortingAlgState = (newAlg) => {
+    setRunState(false);
     setSortingAlg(newAlg);
     sortingAlgRef.current = newAlg;
   };
